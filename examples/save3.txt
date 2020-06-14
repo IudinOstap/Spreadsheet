@@ -1,0 +1,26 @@
+3
+2:2
+vertmid
+hormid
+0:1
+text
+NO ERRORRRRRRRRRRRRRR
+
+
+1:0
+text
+N
+O
+E
+R
+R
+O
+R
+R
+R
+R
+
+
+1:1
+digit
+404

@@ -1,0 +1,84 @@
+ZADANÍ:
+Jednoduchý spreadsheet
+
+Vytvořte aplikaci implementující jednoduchý tabulkový editor.
+
+Buňky pro váš spreadsheet musí podporovat:
+
+1)literály (čísla, řetězce, ...)
+2)základní operátory: +, -, *, /
+3)alespoň 4 jednoduché funkce: sin, abs, concat, ...
+4)odkaz na jinou buňku: = A2 + abs(B1)
+Buňky musí upravovat svůj obsah na základě změn odkazovaných buněk.
+
+Buňka musí detekovat cykly a nesmí dovolit vytvořit výraz, který by cyklus způsobil.
+
+Vytvořená tabulka musí jít uložit do souboru a opětovně zase načíst. Navrhněte vhodnou reprezentaci.
+
+Buňky dále musí implementovat alespoň 1 z těchto funkcionalit:
+
+1)zpracovávat výrazy se závorkami
+2)agregační funkce přes sloupce, řádky a oblasti: avg(A2:A8), max(B1:C10)
+3)vykreslení grafu přes sloupce, řádky nebo oblasti
+
+Použití polymorfismu (doporučeně)
+
+1)typy buněk: číslo, řetězec, výraz, funkce, ...
+2)grafické rozhraní: konzole, ncurses, SDL, OpenGL, ...
+3)různé druhy grafů
+
+//========================================================================================
+
+Moje semestrální práce je to jednoduchý spredsheet nebo program pro práci ( různé výpočty, binární, unární operace, agregační funkce ) s údaji, kde jsou údaje uložení ve formě tabulky, která umožňuje pohodlně pracovat s nimi. Můj program je šikovný nástroj pro automatizaci výpočetní techniky. Zejména můj program bude užitečné v oblasti účetnictví, protože mnoho výpočtů v této oblasti jsou prováděny v tabulkové formě. 
+
+Jak bude vypadat rozhraní mého programu:
+Při spuštění bude uživateli k dispozici nabídka výběru, která bude vypadat přibližně takto:
+1. Vytvořit novou tabulku.
+2. Otevřít již vytvořenou tabulku.
+3. Nastavení.
+4. Ukončit.
+
+( Volba volby se provádí zadáním čísla odpovídající počtu volby. )
+V nastavení lze zadat způsob zarovnání obsahu klecí (doprava/doleva, nahoru/dolů ) nebo způsob práce s číselnými prvky různých typů.
+Také v nastavení můžete změnit jazyk :
+a ) Englis
+b ) Czech ( without diacritic )
+c ) Russian ( in the Latin alphabet )
+
+Při otevření již existující tabulky budete muset zadat cestu k souboru.
+Při vytváření tabulky se program zeptá na velikost a vytvoří prázdnou tabulku zadaných velikostí.
+Po uživatel bude moci provádět takové operace jako:
+
+1. Vypsat tabulku
+	a ) V soubor typu "name.txt”
+	b ) v konzoli
+2. Binární / unární operace mezi číselnými prvky:
+	a ) +
+	b ) -
+	c ) /
+	d ) *
+	e ) abs() 
+	f ) sin()
+3. Binární / unární operace mezi textovými prvky:
+a ) +
+b ) tolower()
+c ) toupper()
+4. Nalezení minimální / maximální číselné hodnoty
+5. Nalezení minimální / maximální textové hodnoty
+6. Seřadit podle řádků / sloupců
+7. Čištění obsahu buňky
+8. zadaný hodnoty do buňky
+	a ) ručně
+	b ) vyrovnat do jiné buňky
+9. Uložení tabulky.
+10. Návrat do hlavního menu.
+
+//========================================================================================
+
+Popis polymorfismu:
+
+
+Používám polymorfismus ve třídě "CCell", která má dvě abstraktní metody "Print_Cell_Line" a "Clone" který jsou přetěžený ve třídách CEmpty, CText, CNumber, první vloží daný řádek do řetězce a vyplní jej mezerami na zadanou šířku, Clone mi vrátí ukazatel na zkopírovaný objekt Tuto metodu potřebuji, protože používám dynamickou komunikaci v dědičnosti.
+.Také používám šablony ve třídě CNumber, protože chci, aby můj program pracoval s celými čísly i čísla s pohyblivou řádovou čárkou.
+Polymorfní volání je v operacích souvisejících s tabulkou, například: class CTable obsahuje map ukazatele na objekty CCell a při vypsaní tabulky vyvolá funkci Print_Cell_Line.
+
